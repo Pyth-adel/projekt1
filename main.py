@@ -51,10 +51,8 @@ if not selection.isdigit() or int(selection) not in range(1, len(TEXTS)+1):
 
 selected_text = TEXTS[int(selection) - 1]
 
-# Čištění a rozdělení na slova
 words = [word.strip(".,:;!?") for word in selected_text.split()]
 
-# Statistiky
 word_count = len(words)
 titlecase_count = sum(word.istitle() for word in words)
 uppercase_count = sum(word.isupper() and word.isalpha() for word in words)
@@ -62,7 +60,6 @@ lowercase_count = sum(word.islower() for word in words)
 numeric_count = sum(word.isdigit() for word in words)
 numeric_sum = sum(int(word) for word in words if word.isdigit())
 
-# Výstup
 print("=" * 40)
 print(f"There are {word_count} words in the selected text.")
 print(f"There are {titlecase_count} titlecase words.")
@@ -72,7 +69,6 @@ print(f"There are {numeric_count} numeric strings.")
 print(f"The sum of all the numbers {numeric_sum}")
 print("=" * 40)
 
-# Graf četností délek slov
 lengths = {}
 for word in words:
     length = len(word)
