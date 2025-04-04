@@ -1,16 +1,17 @@
 from PIL import Image, ImageDraw, ImageFont
+import os
 
 # Nastavení rozměrů obrázku a základních parametrů
 width, height = 300, 300
 font_size = 30
 frames = []
 
-# Pokus o použití předinstalovaného písma DejaVuSans.ttf
-try:
-    font = ImageFont.truetype("DejaVuSans.ttf", font_size)
-except IOError:
-    print("Písmo 'DejaVuSans.ttf' nenalezeno, používám výchozí písmo.")
-    font = ImageFont.load_default()  # Pokud DejaVu Sans není dostupné, použije se výchozí
+# Zkontrolujte, zda máte vhodné písmo
+font_path = "arial.ttf"  # Můžete nahradit cestou k jinému TTF souboru
+if not os.path.exists(font_path):
+    raise FileNotFoundError("Prosím, stáhněte a umístěte soubor 'arial.ttf' do stejné složky jako tento skript.")
+
+font = ImageFont.truetype(font_path, font_size)
 
 # Vytvoření snímků GIFu
 for i in range(10):
@@ -43,4 +44,3 @@ frames[0].save(
 )
 
 print("GIF s blikajícím srdíčkem a textem 'Miluji tě' byl vytvořen jako 'blinking_heart.gif'.")
-
